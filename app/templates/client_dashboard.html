@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .flash-message {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .project-card, .invoice-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover, .invoice-card:hover {
+            transform: scale(1.02);
+        }
+        .form-group {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            padding: 10px;
+            width: calc(100% - 24px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ client.name if client else 'Client' }}</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- New Project Form -->
+    <section class="section new-project">
+        <h2>Request New Project</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="project_name">Project Name:</label>
+                <input type="text" id="project_name" name="project_name" required>
+            </div>
+            <div class="form-group">
+                <label for="budget">Estimated Budget ($):</label>
+                <input type="number" id="budget" name="budget" step="0.01" min="0" required>
+            </div>
+            <button type="submit">Submit Project Request</button>
+        </form>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects">
+        <h2>Your Projects</h2>
+        {% if projects %}
+            {% for project in projects %}
+            <div class="project-card">
+                <h3>{{ project.project_name }}</h3>
+                <p><strong>Status:</strong> {{ project.status }}</p>
+                <p><strong>Start Date:</strong> {{ project.start_date.strftime('%Y-%m-%d') }}</p>
+                <p><strong>End Date:</strong> {{ project.end_date.strftime('%Y-%m-%d') if project.end_date else "Not Set" }}</p>
+                <p><strong>Budget:</strong> ${{ "%.2f"|format(project.budget) }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No projects found.</p>
+        {% endif %}
+    </section>
+
+    <!-- Invoices Section -->
+    <section class="section invoices">
+        <h2>Pending Invoices</h2>
+        {% if pending_invoices %}
+            {% for invoice in pending_invoices %}
+            <div class="invoice-card">
+                <p><strong>Invoice #{{ invoice.invoice_id }}</strong></p>
+                <p>Amount: ${{ "%.2f"|format(invoice.amount) }}</p>
+                <p>Date: {{ invoice.invoice_date.strftime('%Y-%m-%d') }}</p>
+                <p>Status: {{ invoice.status }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No pending invoices.</p>
+        {% endif %}
+
+        <h2>Completed Invoices</h2>
+        {% if completed_invoices %}
+            {% for invoice in completed_invoices %}
+            <div class="invoice-card">
+                <p><strong>Invoice #{{ invoice.invoice_id }}</strong></p>
+                <p>Amount: ${{ "%.2f"|format(invoice.amount) }}</p>
+                <p>Date: {{ invoice.invoice_date.strftime('%Y-%m-%d') }}</p>
+                <p>Status: {{ invoice.status }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No completed invoices.</p>
+        {% endif %}
+    </section>
+</body>
+</html>
