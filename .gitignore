@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment folders
+venv/
+.venv/
+
+# Jupyter Notebook checkpoints (if using Jupyter)
+.ipynb_checkpoints
+
+# Environment variables file
+.env
+
+# VS Code settings folder
+.vscode/
+
+# Windows system files
+Thumbs.db
+
+# Log files
+*.log
+
+# pytest cache
+.pytest_cache/
+
+# Unit test / coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Distribution / packaging files
+build/
+dist/
+*.egg-info/
+
+# Cache directories and other temp files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
