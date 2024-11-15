@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Client</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="margin: 0; padding: 20px; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; justify-content: center; align-items: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-sizing: border-box;">
+
+    <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px;">
+        <h2 style="color: #2d3748; margin: 0 0 1.5rem 0; font-size: 1.8rem; text-align: center; font-weight: 600;">Add User</h2>
+
+        {% if get_flashed_messages() %}
+            <div style="padding: 1rem; margin-bottom: 1rem; background: #fed7d7; border-radius: 10px; color: #c53030;">
+                {% for message in get_flashed_messages() %}
+                    <div style="margin-bottom: 0.5rem;">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('create_client') }}">
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="secret">Secret</label>
+                <input type="password" id="secret" name="secret" required>
+            </div>
+
+            <!-- Additional fields based on the function requirements -->
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="contact_no">Contact No</label>
+                <input type="text" id="contact_no" name="contact_no" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="industry">Industry</label>
+                <input type="text" id="industry" name="industry" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; position: relative;">
+                <label for="company_size">Company Size</label>
+                <input type="text" id="company_size" name="company_size" required>
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600;">
+                Add User
+            </button>
+        </form>
+    </div>
+</body>
+</html>
