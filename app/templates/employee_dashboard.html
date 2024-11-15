@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            font-size: 2em;
+            color: #4a90e2;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #33475b;
+            margin-bottom: 15px;
+        }
+        h3 {
+            font-size: 1.3em;
+            color: #50b362;
+            margin-top: 25px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #f1f1f1;
+        }
+        .team {
+            color: #4a90e2;
+            font-weight: bold;
+        }
+        .description {
+            color: #777;
+        }
+        .project-status {
+            font-weight: bold;
+            color: #50b362;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Dashboard</h1>
+    <h2>Welcome, {{ employee.name }}</h2>
+
+    <!-- Teams -->
+    <h3>Your Team</h3>
+    <ul>
+        {% for team in teams %}
+        <li><span class="team">{{ team.team_name }}</span> - <span class="description">{{ team.description }}</span></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Projects -->
+    <h3>Your Projects</h3>
+    <ul>
+        {% for project in projects %}
+        <li><span class="team">{{ project.project_name }}</span> - <span class="project-status">Status: {{ project.status }}</span></li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
