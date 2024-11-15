@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Login</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f8ff; margin: 0; font-family: Arial, sans-serif;">
+    <div style="background-color: #ffffff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 350px;">
+        <h2 style="text-align: center; color: #007BFF; margin-bottom: 20px;">Client Login</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="color: red; margin-bottom: 15px; text-align: center;">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form action="/client_login" method="POST">
+            <input type="text" name="username" placeholder="Username" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
+            <input type="password" name="password" placeholder="Password" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px;">
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Login</button>
+        </form>
+    </div>
+</body>
+</html>
