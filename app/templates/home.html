@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClientConnect Pro</title>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #f5f5f5; margin: 0; font-family: Arial, sans-serif;">
+    <h1 style="color: #333; font-size: 48px; margin-bottom: 40px;">ClientConnect Pro</h1>
+    
+    <div style="display: flex; flex-direction: column; gap: 20px; width: 300px;">
+        <button onclick="window.location.href='/add_user'" style="padding: 15px; background-color: #007BFF; border: none; color: white; font-size: 18px; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">
+            Create Client
+        </button>
+        <button onclick="window.location.href='/client_login'" style="padding: 15px; background-color: #28A745; border: none; color: white; font-size: 18px; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">
+            Client Login
+        </button>
+      <button onclick="window.location.href='/manager_login'" style="padding: 15px; background-color: #17A2B8; border: none; color: white; font-size: 18px; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">
+            Manager Login
+        </button>
+        <button onclick="window.location.href='/employee_login'" style="padding: 15px; background-color: #FFC107; border: none; color: white; font-size: 18px; cursor: pointer; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: background-color 0.3s;">
+            Employee Login
+        </button>
+    </div>
+
+    <script>
+        // Adding hover effects for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                button.style.backgroundColor = '#0056b3'; // Darker shade on hover
+            });
+            button.addEventListener('mouseout', () => {
+                // Restore original color
+                const originalColors = {
+                    'Create Client': '#007BFF',
+                    'Client Login': '#28A745',
+                    'Manager Login': '#17A2B8',
+                    'Employee Login': '#FFC107'
+                };
+                button.style.backgroundColor = originalColors[button.textContent];
+            });
+        });
+    </script>
+</body>
+</html>
