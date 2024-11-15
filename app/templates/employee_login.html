@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #e6f7ff; margin: 0; font-family: 'Verdana', sans-serif;">
+    <div style="background-color: #ffffff; padding: 50px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.2); width: 380px;">
+        <h2 style="text-align: center; color: #006666; margin-bottom: 25px;">Employee Login</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="color: red; margin-bottom: 20px; text-align: center;">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form action="/employee_login" method="POST">
+            <input type="text" name="username" placeholder="Username" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #b3cccc; border-radius: 8px;">
+            <input type="password" name="password" placeholder="Password" required style="width: 100%; padding: 12px; margin-bottom: 25px; border: 1px solid #b3cccc; border-radius: 8px;">
+            <button type="submit" style="width: 100%; padding: 12px; background-color: #006666; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Login</button>
+        </form>
+    </div>
+</body>
+</html>
